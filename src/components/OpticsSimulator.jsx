@@ -1,14 +1,20 @@
+// src/components/OpticsSimulator.jsx
 import React, { useState } from "react";
+import Graph from "./Graph";
 
 export default function OpticsSimulator() {
-  const [u, setU] = useState(0);
+  const [u, setU] = useState(12);   // prevent divide-by-zero
   const [f, setF] = useState(10);
-  const [v, setV] = useState(0);
+  const [v, setV] = useState(null);
 
   const calculate = () => {
     const result = 1 / f - 1 / u;
     setV(1 / result);
   };
+
+  // Graph data
+  const x = [...Array(50)].map((_, i) => i + 12);     // u values
+  const y = x.map((U) => (U * f) / (U - f));          // v values
 
   return (
     <div className="card">
@@ -30,23 +36,11 @@ export default function OpticsSimulator() {
 
       <button onClick={calculate}>Calculate Image Distance</button>
 
-      <p className="result">Image Distance v = {v.toFixed(2)} cm</p>
-    </div>
-  );
- import Graph from "./Graph";
+      {v !== null && (
+        <p className="result">Image Distance v = {v.toFixed(2)} cm</p>
+      )}
 
-export default function OpticsSimulator() {
-  const f = 10; // focal length in cm
-
-  // object distances u > f
-  const x = [...Array(50)].map((_, i) => i + 12); // 12 → 61 cm
-
-  // image distances
-  const y = x.map(u => (u * f) / (u - f));
-
-  return (
-    <div>
-      <h2>Optics: Lens Formula Simulation</h2>
+      <h2>Lens Curve Simulation</h2>
       <Graph
         xValues={x}
         yValues={y}
@@ -54,5 +48,4 @@ export default function OpticsSimulator() {
       />
     </div>
   );
-}
 }
