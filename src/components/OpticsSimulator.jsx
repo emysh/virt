@@ -33,11 +33,16 @@ export default function OpticsSimulator() {
       <p className="result">Image Distance v = {v.toFixed(2)} cm</p>
     </div>
   );
-  import Graph from "./Graph";
+ import Graph from "./Graph";
 
-export default function OhmsLaw() {
-  const x = [...Array(50).keys()].map(i => i / 10);  // 0 to 5
-  const y = x.map(v => v * 2); // example simulation: 1/f = 1/u + 1/v
+export default function OpticsSimulator() {
+  const f = 10; // focal length in cm
+
+  // object distances u > f
+  const x = [...Array(50)].map((_, i) => i + 12); // 12 → 61 cm
+
+  // image distances
+  const y = x.map(u => (u * f) / (u - f));
 
   return (
     <div>
@@ -45,10 +50,9 @@ export default function OhmsLaw() {
       <Graph
         xValues={x}
         yValues={y}
-        title="Voltage vs Current"
+        title="Image Distance v vs Object Distance u"
       />
     </div>
   );
 }
-
 }
