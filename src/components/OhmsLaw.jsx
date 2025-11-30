@@ -1,4 +1,6 @@
+// src/components/OhmsLaw.jsx
 import React, { useState } from "react";
+import Graph from "./Graph";
 
 export default function OhmsLaw() {
   const [current, setCurrent] = useState(0);
@@ -8,6 +10,11 @@ export default function OhmsLaw() {
   const calculate = () => {
     setVoltage(current * resistance);
   };
+
+  // Graph data (fixed R = 100Ω)
+  const R = 100;
+  const x = [...Array(50)].map((_, i) => i * 0.02); // 0 to 1A
+  const y = x.map((I) => I * R);
 
   return (
     <div className="card">
@@ -30,22 +37,8 @@ export default function OhmsLaw() {
       <button onClick={calculate}>Calculate Voltage</button>
 
       <p className="result">Voltage = {voltage.toFixed(2)} V</p>
-    </div>
-  );
- import Graph from "./Graph";
 
-export default function OhmsLaw() {
-  const R = 100; // Ohms
-
-  // Current values from 0 to 1A
-  const x = [...Array(50)].map((_, i) => i * 0.02);
-
-  // Voltage values
-  const y = x.map(I => I * R);
-
-  return (
-    <div>
-      <h2>Ohm's Law Simulation (V = IR)</h2>
+      <h2>Voltage vs Current Graph</h2>
       <Graph
         xValues={x}
         yValues={y}
@@ -53,7 +46,4 @@ export default function OhmsLaw() {
       />
     </div>
   );
-}
-
-
 }
