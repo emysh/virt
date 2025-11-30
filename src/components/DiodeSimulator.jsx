@@ -28,22 +28,28 @@ export default function DiodeSimulator() {
       <p className="result">Current = {current.toExponential(3)} A</p>
     </div>
   );
-  import Graph from "./Graph";
+ import Graph from "./Graph";
 
-export default function OhmsLaw() {
-  const x = [...Array(50).keys()].map(i => i / 10);  // 0 to 5
-  const y = x.map(v => v * 2); // example simulation: I = Is (exp(V/nVt) − 1)
+export default function DiodeSimulator() {
+  const Is = 1e-12;   // saturation current
+  const n = 1.7;      // ideality factor
+  const VT = 0.025;   // thermal voltage at room temp
+
+  // Voltage sweep: 0 → 0.8V
+  const x = [...Array(80)].map((_, i) => i * 0.01);
+
+  // Current using Shockley equation
+  const y = x.map(V => Is * (Math.exp(V / (n * VT)) - 1));
 
   return (
     <div>
-      <h2>DiodeSimulator Simulation</h2>
+      <h2>Diode I-V Characteristics</h2>
       <Graph
         xValues={x}
         yValues={y}
-        title="Voltage vs Current"
+        title="Current (I) vs Voltage (V)"
       />
     </div>
   );
 }
-
 }
