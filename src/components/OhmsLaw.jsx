@@ -32,4 +32,22 @@ export default function OhmsLaw() {
       <p className="result">Voltage = {voltage.toFixed(2)} V</p>
     </div>
   );
+  import Graph from "./Graph";
+
+export default function OhmsLaw() {
+  const x = [...Array(50).keys()].map(i => i / 10);  // 0 to 5
+  const y = x.map(v => v * 2); // example simulation: I = 2V
+
+  return (
+    <div>
+      <h2>Ohm's Law Simulation</h2>
+      <Graph
+        xValues={x}
+        yValues={y}
+        title="Voltage vs Current"
+      />
+    </div>
+  );
+}
+
 }
