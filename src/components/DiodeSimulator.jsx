@@ -28,4 +28,22 @@ export default function DiodeSimulator() {
       <p className="result">Current = {current.toExponential(3)} A</p>
     </div>
   );
+  import Graph from "./Graph";
+
+export default function OhmsLaw() {
+  const x = [...Array(50).keys()].map(i => i / 10);  // 0 to 5
+  const y = x.map(v => v * 2); // example simulation: I = Is (exp(V/nVt) − 1)
+
+  return (
+    <div>
+      <h2>DiodeSimulator Simulation</h2>
+      <Graph
+        xValues={x}
+        yValues={y}
+        title="Voltage vs Current"
+      />
+    </div>
+  );
+}
+
 }
