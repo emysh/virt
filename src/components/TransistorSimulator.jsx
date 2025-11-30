@@ -32,4 +32,27 @@ export default function TransistorSimulator() {
       <p className="result">Collector Current = {ic.toExponential(3)} A</p>
     </div>
   );
+  import Graph from "./Graph";
+
+export default function TransistorSimulator() {
+  const beta = 150; // transistor gain
+
+  // Base current sweep (µA)
+  const x = [...Array(50)].map((_, i) => i * 2e-6);
+
+  // Collector current
+  const y = x.map(Ib => Ib * beta);
+
+  return (
+    <div>
+      <h2>Transistor CE Characteristics</h2>
+      <Graph
+        xValues={x}
+        yValues={y}
+        title="Collector Current Ic vs Base Current Ib"
+      />
+    </div>
+  );
+}
+
 }
