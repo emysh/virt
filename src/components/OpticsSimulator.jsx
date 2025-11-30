@@ -33,4 +33,22 @@ export default function OpticsSimulator() {
       <p className="result">Image Distance v = {v.toFixed(2)} cm</p>
     </div>
   );
+  import Graph from "./Graph";
+
+export default function OhmsLaw() {
+  const x = [...Array(50).keys()].map(i => i / 10);  // 0 to 5
+  const y = x.map(v => v * 2); // example simulation: 1/f = 1/u + 1/v
+
+  return (
+    <div>
+      <h2>Optics: Lens Formula Simulation</h2>
+      <Graph
+        xValues={x}
+        yValues={y}
+        title="Voltage vs Current"
+      />
+    </div>
+  );
+}
+
 }
