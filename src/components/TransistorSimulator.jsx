@@ -1,3 +1,4 @@
+// src/components/TransistorSimulator.jsx
 import React, { useState } from "react";
 import Graph from "./Graph";
 
@@ -10,9 +11,9 @@ export default function TransistorSimulator() {
     setIc(ib * beta);
   };
 
-  // Generate graph data
-  const x = [...Array(50)].map((_, i) => i * 2e-6); // Base current sweep
-  const y = x.map((Ib) => Ib * beta);               // Collector current
+  // Graph data
+  const x = [...Array(50)].map((_, i) => i * 2e-6);
+  const y = x.map((Ib) => Ib * beta);
 
   return (
     <div className="card">
